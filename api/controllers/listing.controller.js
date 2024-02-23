@@ -8,7 +8,7 @@ export const createCompany = async (req, res, next) => {
   try {
     const name = req.body.name;
     // const logo = req.body.logo;
-    const industry = req.body.domain;
+    const industry = req.body.domain.toString();
     const description = req.body.description;
     const address = req.body.address;
     const phone = req.body.phone;
@@ -16,15 +16,15 @@ export const createCompany = async (req, res, next) => {
     const websiteUrl = req.body.url;
     const date = req.body.date;
     const founders = req.body.founders;
-    const environmentalScore = req.body.envscore;
-    const socialScore = req.body.socialscore;
-    const governanceScore = req.body.govscore;
+    let environmentalScore = parseInt(req.body.envscore);
+    let socialScore = parseInt(req.body.socialscore);
+    let governanceScore = parseInt(req.body.govscore);
     const size = req.body.size;
-    let sustainabilityRating = '';
+    let sustainabilityRating = 0;
 
-    function runPythonScript(scriptPath) {
+    function runPythonScript(scriptPath, args) {
       return new Promise((resolve, reject) => {
-        const pyProg = spawn('python', [scriptPath]);
+        const pyProg = spawn('python', [scriptPath, ...args]);
         let data = '';
 
         pyProg.stdout.on('data', (stdout) => {
@@ -49,7 +49,10 @@ export const createCompany = async (req, res, next) => {
     }
 
     try {
-      sustainabilityRating = await runPythonScript(pythonScript);
+      const scriptArgs = [environmentalScore, socialScore, governanceScore, industry, size];
+      console.log(scriptArgs);
+
+      sustainabilityRating = await runPythonScript(pythonScript, scriptArgs);
     } catch (error) {
       next(error);
     }

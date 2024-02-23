@@ -18,11 +18,12 @@ const Details = () => {
   };
 
   useEffect(() => {
+    console.log(userId);
     axios.get(`http://localhost:3000/api/company/getall/${userId}`)
     .then(response => {
       console.log(response);
     })
-  }, []);
+  }, [userId]);
 
   return (
     <div className="p-20 px-10">

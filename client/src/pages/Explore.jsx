@@ -70,7 +70,7 @@ const Explore = () => {
     }, []);
 
     const getScore = () => {     
-      axios.get("http://localhost:3000/api/company/getall")
+      axios.get(`http://localhost:3000/api/company/getrating/${userId}`)
       .then(response => {
         console.log('Data successfully posted:', response.data);
       })

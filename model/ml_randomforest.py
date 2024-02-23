@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-
+import sys
 
 np.random.seed(42)
 number_of_data_available = 10000
@@ -67,4 +67,8 @@ def calculate_sustainability(env_score, soc_score, gov_score, industry, size):
     return predictions[0]
 
 
-print(calculate_sustainability(98, 90, 78, "Beauty and Wellness", "Small"))
+print(
+    calculate_sustainability(
+        sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5]
+    )
+)
