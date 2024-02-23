@@ -8,10 +8,10 @@ import FormButton from "../ui/buttons/FormButton";
 import UserIdContext from "../context/UserIdContext";
 import axios from "axios";
 
-const YourItemComponent = ({ id, imgURL, title, description }) => {
+const YourItemComponent = ({ id, imgURL, title, description, rating }) => {
   return (
     <Link to={`/item/${id}`} className="no-underline">
-      <div className="bg-[#252525] mb-4 p-4 rounded-lg">
+      <div className="bg-[#252525] mb-4 p-4 rounded-lg flex items-center justify-between px-6">
         <div className="flex items-center gap-6">
           <div>
             <img src={imgURL} alt={title} className="w-[65px] h-[65px]" />
@@ -19,6 +19,11 @@ const YourItemComponent = ({ id, imgURL, title, description }) => {
           <div>
             <div className="text-white text-lg font-bold">{title}</div>
             <p>{description}</p>
+          </div>
+        </div>
+        <div>
+          <div className="flex">
+            {rating}/100
           </div>
         </div>
       </div>
@@ -50,21 +55,19 @@ const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [ score, setScore ] = useState('_');
     const { userId } = useContext(UserIdContext);
+    const [apiData, setApiData] = useState([]);
+
 
     useEffect(() => {
       axios.get("http://localhost:3000/api/company/getSome")
-      .then(response => {
-        console.log(response);
-      })
+        .then(response => {
+          setApiData(response.data); 
+          console.log('Data successfully fetched:', response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
     }, []);
-    
-
-    // const getAllCompanies = () => {
-    //   axios.get("http://localhost:3000/api/company/getSome")
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    // }
 
     const getScore = () => {     
       axios.get("http://localhost:3000/api/company/getall")
@@ -135,13 +138,14 @@ const Explore = () => {
           </div>
         </div>
         <div className="w-[900px] bg-[#0F0F0F] rounded-xl">
-          {dummyData.map((item) => (
+          {apiData.map((item) => (
             <YourItemComponent
               key={item.id}
               id={item.id}
               imgURL={item.imgURL}
-              title={item.title}
+              title={item.companyName}
               description={item.description}
+              rating={item.sustainabilityRating}
             />
           ))}
         </div>
