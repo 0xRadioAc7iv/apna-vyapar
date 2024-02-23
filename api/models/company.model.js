@@ -9,7 +9,7 @@ const companySchema = new mongoose.Schema(
         },
         logo: { // URL of the Image stored on Cloudinary
             type: String,
-            required: true,
+            required: false,
         },
         industry: { // Type of the Industry
             type: String,
@@ -40,7 +40,7 @@ const companySchema = new mongoose.Schema(
             required: true,
         },
         foundingDate: { // Date on which the Company was Registered
-            type: Date,
+            type: String,
             required: true,
         },
         founders: { // Founders of the Company

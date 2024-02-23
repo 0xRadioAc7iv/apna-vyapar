@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState({});
@@ -12,8 +13,20 @@ export default function RegisterForm() {
     });
   };
 
-  const handleSubmit = () => {
-    console.log("Submitted");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("hheheeh");
+    // const formDataToSend = new FormData();
+    // formData.append('data', formData);
+    console.log("SENDING", formData);
+
+    await axios.post("http://localhost:3000/api/company/create", formData)
+    .then(response => {
+        console.log('Data successfully posted:', response.data);
+      })
+      .catch(error => {
+        console.error('Error posting data:', error);
+      });
   };
 
   return (
@@ -32,7 +45,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Company Name"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="name"
               onChange={handleChange}
             />
           </div>
@@ -44,7 +57,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Company Address"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="address"
               onChange={handleChange}
             />
           </div>
@@ -70,7 +83,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Phone Number"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="phone"
               onChange={handleChange}
             />
           </div>
@@ -82,7 +95,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="URL"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="url"
               onChange={handleChange}
             />
           </div>
@@ -90,14 +103,14 @@ export default function RegisterForm() {
             <label htmlFor="email" className="text-[#e2e2e2]">
               Logo
             </label>
-            <div class="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-full">
               <label
-                for="dropzone-file"
-                class="flex flex-col items-center justify-center w-72 h-24 border-2 border-white/30 border-dashed rounded-lg cursor-pointer"
+                htmlFor="dropzone-file"
+                className="flex flex-col items-center justify-center w-72 h-24 border-2 border-white/30 border-dashed rounded-lg cursor-pointer"
               >
-                <div class="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center">
                   <svg
-                    class="w-8 mb-4 text-gray-500 dark:text-gray-400"
+                    className="w-8 mb-4 text-gray-500 dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -105,17 +118,17 @@ export default function RegisterForm() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                     />
                   </svg>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     Company Logo
                   </p>
                 </div>
-                <input id="dropzone-file" type="file" class="hidden" />
+                <input id="file" type="file" className="hidden" />
               </label>
             </div>
           </div>
@@ -129,7 +142,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Domain"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="domain"
               onChange={handleChange}
             />
           </div>
@@ -141,7 +154,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Description"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="description"
               onChange={handleChange}
             />
           </div>
@@ -155,7 +168,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Name"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="founders"
               onChange={handleChange}
             />
           </div>
@@ -167,7 +180,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="22/2/2024"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="date"
               onChange={handleChange}
             />
           </div>
@@ -185,7 +198,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Environmental Score"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="envscore"
               onChange={handleChange}
             />
           </div>
@@ -197,7 +210,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Social Score"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="socialscore"
               onChange={handleChange}
             />
           </div>
@@ -211,7 +224,7 @@ export default function RegisterForm() {
               type="text"
               placeholder="Company Size"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="size"
               onChange={handleChange}
             />
           </div>
@@ -223,18 +236,18 @@ export default function RegisterForm() {
               type="text"
               placeholder="Governance Score"
               className="p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]"
-              id="email"
+              id="govscore"
               onChange={handleChange}
             />
           </div>
         </div>
         </div>
-      </form>
-      <div className="mt-4">
-        <button className='flex w-40 text-md items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md'>
-            Submit
-        </button>
+        <div className="mt-4">
+          <button type="submit" className='flex w-40 text-md items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md'>
+              Submit
+          </button>
       </div>
+      </form>
     </div>
   );
 }
