@@ -99,16 +99,8 @@ export const getAllCompanyDetails = async (req, res, next) => {
 
 export const getSomeCompanyDetails = async (req, res, next) => {
   try {
-    const companyDetails = await Company.findById(req.params.id);
-
-    const logo = companyDetails.logo;
-    const name = companyDetails.companyName;
-    const industry = companyDetails.industry;
-    const sustainabilityRating = companyDetails.sustainabilityRating;
-
-    const dataToSend = { logo, name, industry, sustainabilityRating };
-
-    return res.status(200).json(dataToSend);
+    const companyDetails = await Company.find();
+    return res.status(200).json(companyDetails);
   } catch (error) {
     next(error);
   }

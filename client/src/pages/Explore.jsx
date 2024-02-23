@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/explore/Checkbox";
 import { dummyData } from "../data/dummyData";
@@ -6,6 +6,7 @@ import Green from "../ui/buttons/Green";
 import profile from "../assets/dummy-profile.svg";
 import FormButton from "../ui/buttons/FormButton";
 import UserIdContext from "../context/UserIdContext";
+import axios from "axios";
 
 const YourItemComponent = ({ id, imgURL, title, description }) => {
   return (
@@ -49,6 +50,21 @@ const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [ score, setScore ] = useState('_');
     const { userId } = useContext(UserIdContext);
+
+    useEffect(() => {
+      axios.get("http://localhost:3000/api/company/getSome")
+      .then(response => {
+        console.log(response);
+      })
+    }, []);
+    
+
+    // const getAllCompanies = () => {
+    //   axios.get("http://localhost:3000/api/company/getSome")
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    // }
 
     const getScore = () => {     
       axios.get("http://localhost:3000/api/company/getall")

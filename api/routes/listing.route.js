@@ -8,7 +8,7 @@ router.post('/create', createCompany);
 
 router.get('/getall/', getAllCompanies);
 router.get('/getall/:id', getAllCompanyDetails);
-router.get('/getsome/:id', getSomeCompanyDetails);
+router.get('/getsome', getSomeCompanyDetails);
 router.get('/getrating/:id', getSustainabilityRating);
 
 export default router;
