@@ -1,17 +1,22 @@
-import Listing from '../models/listing.model.js';
+import Company from '../models/company.model.js';
 import { errorHandler } from '../utils/error.js';
 
-export const createListing = async (req, res, next) => {
+export const createCompany = async (req, res, next) => {
   try {
-    const listing = await Listing.create(req.body);
-    return res.status(201).json(listing);
+    const company = new Company(req.body);
+    company.save()
+      .then((result) => {
+        console.log(result);
+      });
+
+    return res.status(201).json(company);
   } catch (error) {
     next(error);
   }
 };
 
 export const deleteListing = async (req, res, next) => {
-  const listing = await Listing.findById(req.params.id);
+  const listing = await Company.findById(req.params.id);
 
   if (!listing) {
     return next(errorHandler(404, 'Listing not found!'));
@@ -22,7 +27,7 @@ export const deleteListing = async (req, res, next) => {
   }
 
   try {
-    await Listing.findByIdAndDelete(req.params.id);
+    await Company.findByIdAndDelete(req.params.id);
     res.status(200).json('Listing has been deleted!');
   } catch (error) {
     next(error);
@@ -62,7 +67,7 @@ export const getListing = async (req, res, next) => {
   }
 };
 
-export const getListings = async (req, res, next) => {
+export const getCompanies = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex) || 0;
