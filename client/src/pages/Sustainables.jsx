@@ -45,30 +45,14 @@ const ProfileCard = () => {
   );
 };
 
-const Explore = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [ score, setScore ] = useState('_');
-    const { userId } = useContext(UserIdContext);
+const Sustainables = () => {
+  const [score, setScore] = useState("_");
+  const { userId } = useContext(UserIdContext);
 
-    const getScore = () => {     
-      axios.get("http://localhost:3000/api/company/getall")
-      .then(response => {
-        console.log('Data successfully posted:', response.data);
-      })
-      .catch(error => {
-        console.error('Error posting data:', error);
-      });
-    }
-
-  const handleClick = (option) => {
-    setSelectedOption(option);
+  const getScore = () => {
+    console.log();
   };
 
-  const getBorderStyle = (option) => {
-    return selectedOption === option
-      ? "border-l-4 border-green-500"
-      : "border-l-4 border-transparent";
-  };
   return (
     <div className="">
       <div className="flex justify-end mt-6 mr-6">
@@ -96,27 +80,6 @@ const Explore = () => {
             <Checkbox />
           </div>
           <div className="h-[1px] my-3 bg-white/30"></div>
-          <div className="flex flex-col items-center gap-2 justify-center font-medium">
-            Customer Rating
-          </div>
-          <div className="flex flex-col items-center gap-4 mt-4">
-            <div
-              className={`py-1.5 px-4 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
-                "Low to High"
-              )}`}
-              onClick={() => handleClick("Low to High")}
-            >
-              Low to High
-            </div>
-            <div
-              className={`py-1.5 px-4 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
-                "High to Low"
-              )}`}
-              onClick={() => handleClick("High to Low")}
-            >
-              High to Low
-            </div>
-          </div>
         </div>
         <div className="w-[900px] bg-[#0F0F0F] rounded-xl">
           {dummyData.map((item) => (
@@ -146,4 +109,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default Sustainables;
