@@ -6,6 +6,8 @@ import authRouter from './routes/auth.route.js';
 import companyRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from "cors";
+
 dotenv.config();
 
 mongoose
@@ -20,6 +22,8 @@ mongoose
 const __dirname = path.resolve();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
