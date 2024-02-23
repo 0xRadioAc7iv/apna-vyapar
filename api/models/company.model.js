@@ -67,10 +67,6 @@ const companySchema = new mongoose.Schema(
             type: Number,
             required: false,
         }
-        // fundingInformation: { // Total Rounds of which Funding has been done (No. of Rounds and Equity)
-        //     type: Array,
-        //     required: true,
-        // },
     },
     { timestamps: true }
 );
