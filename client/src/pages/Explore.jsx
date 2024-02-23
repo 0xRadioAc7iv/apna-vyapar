@@ -45,8 +45,14 @@ const Explore = () => {
     const [ score, setScore ] = useState('_');
     const { userId } = useContext(UserIdContext);
 
-    const getScore = () => {
-      console.log();
+    const getScore = () => {     
+      axios.get("http://localhost:3000/api/company/getall")
+      .then(response => {
+        console.log('Data successfully posted:', response.data);
+      })
+      .catch(error => {
+        console.error('Error posting data:', error);
+      });
     }
 
     const handleClick = (option) => {

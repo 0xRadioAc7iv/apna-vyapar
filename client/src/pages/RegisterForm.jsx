@@ -15,7 +15,6 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hheheeh");
     // const formDataToSend = new FormData();
     // formData.append('data', formData);
     console.log("SENDING", formData);
