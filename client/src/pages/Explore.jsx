@@ -57,14 +57,6 @@ const Explore = () => {
         console.log(response);
       })
     }, []);
-    
-
-    // const getAllCompanies = () => {
-    //   axios.get("http://localhost:3000/api/company/getSome")
-    //   .then(response => {
-    //     console.log(response);
-    //   })
-    // }
 
     const getScore = () => {     
       axios.get("http://localhost:3000/api/company/getall")
