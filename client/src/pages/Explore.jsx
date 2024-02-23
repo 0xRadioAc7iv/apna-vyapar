@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import Checkbox from '../components/explore/Checkbox'
-
 import { dummyData } from "../data/dummyData";
 import Green from "../ui/buttons/Green";
 import profile from "../assets/dummy-profile.svg";
 import FormButton from "../ui/buttons/FormButton";
-
+import UserIdContext from "../context/UserIdContext";
 
 const YourItemComponent = ({ imgURL, title, description }) => {
     return (
@@ -43,6 +42,12 @@ const ProfileCard = () => {
 
 const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
+    const [ score, setScore ] = useState('_');
+    const { userId } = useContext(UserIdContext);
+
+    const getScore = () => {
+      console.log();
+    }
 
     const handleClick = (option) => {
       setSelectedOption(option);
@@ -101,8 +106,8 @@ const Explore = () => {
         <div className='w-[250px] bg-[#0F0F0F] rounded-xl flex flex-col items-center'>
             <ProfileCard />
             <div className="flex flex-col justify-center items-center mt-10 gap-6 border border-white/30 rounded-xl w-56 p-4">
-                <div>__ / 100</div>
-                <button className="flex text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md whitespace-nowrap">
+                <div>{score} / 100</div>
+                <button onClick={() => getScore()} className="flex text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md whitespace-nowrap">
                     Calculate Score
                 </button>
             </div>

@@ -9,8 +9,11 @@ import {
 import OAuth from '../components/OAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserIdContext from '../context/UserIdContext';
+import { useContext } from 'react';
 
 export default function SignIn() {
+  const { setUserId } = useContext(UserIdContext);
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -33,7 +36,8 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data._id);
+      console.log(data);
+      setUserId(data._id);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
         toast.error(data.message); 
