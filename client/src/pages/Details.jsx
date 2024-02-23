@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import companyLogo from '../assets/company-logo.svg';
 import Tip from '../ui/buttons/Tip';
 import { CiBookmark } from 'react-icons/ci';
@@ -6,13 +6,23 @@ import about from '../assets/static-about-icon.svg';
 import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
+import UserIdContext from '../context/UserIdContext';
+import axios from "axios";
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState('about');
+  const { userId } = useContext(UserIdContext);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/company/getall/${userId}`)
+    .then(response => {
+      console.log(response);
+    })
+  }, []);
 
   return (
     <div className="p-20 px-10">
