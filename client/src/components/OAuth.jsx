@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
+import { FaGoogle } from "react-icons/fa";
+
 export default function OAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,9 +38,10 @@ export default function OAuth() {
     <button
       onClick={handleGoogleClick}
       type='button'
-      className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+      className='bg-transparent cursor-pointer border-green-500 border-2 text-white p-3 text-md font-bold rounded-full w-56 hover:opacity-95 flex items-center gap-4'
     >
-      Continue with google
+      <FaGoogle />
+      Continue with Google
     </button>
   );
 }
