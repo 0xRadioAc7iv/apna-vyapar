@@ -47,6 +47,22 @@ const companySchema = new mongoose.Schema(
             type: Array,
             required: true,
         },
+        environmentalScore: {
+            type: String,
+            require: true,
+        },
+        socialScore: {
+            type: String,
+            require: true,
+        },
+        governanceScore: {
+            type: String,
+            require: true,
+        },
+        companySize: {
+            type: String,
+            require: true,
+        },
         sustainabilityRating: {
             type: Number,
             required: false,
