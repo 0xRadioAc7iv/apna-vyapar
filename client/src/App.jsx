@@ -10,6 +10,8 @@ import Explore from './pages/Explore';
 import PrivateRoute from './components/PrivateRoute';
 import UserIdContext from './context/UserIdContext';
 import { useContext, useState } from 'react';
+import Details from './pages/Details';
+import Marketing from './pages/Marketing';
 
 export default function App() {
   const [userId, setUserId] = useState('');
@@ -25,8 +27,10 @@ export default function App() {
           <Route path='/about' element={<About />} />
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
-            <Route path='/explore' element={<Explore />} />
             <Route path="/register" element={<RegisterForm />} />
+            <Route path='/explore' element={<Explore />} />
+            <Route path='/item/:id' element={<Details />} />
+            <Route path='/marketing' element={<Marketing />} />
           </Route>
         </Routes>
       </BrowserRouter>
