@@ -6,3 +6,7 @@ body{
     background-color: black;
     color: white;
 }
+
+.card:hover .arrow {
+    transform: translateX(10px);
+  }

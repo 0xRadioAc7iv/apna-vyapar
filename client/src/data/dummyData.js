@@ -26,43 +26,43 @@ export const marketingData = [
     {
         id: 2,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Search",
+        description: "Build first-party search experiences on your website, app, and more."
     },
     {
         id: 3,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Pages",
+        description: "Build SEO ready Landing Page"
     },
     {
         id: 4,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Listings",
+        description: "Publish facts about your business"
     },
     {
         id: 5,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Reviews",
+        description: "Monitor, respond, generate and analyze reviews"
     },
     {
         id: 6,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Platform",
+        description: "Configure account features, user permissions and more"
     },
     {
         id: 7,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Connectors",
+        description: "Bring data into and out of the platform with ease"
     },
     {
         id: 8,
         icon: leaf,
-        heading: "Content",
-        description: "Import, store and structure your data structure as entities"
+        heading: "Analytics",
+        description: "Analyze matrices and insights for your business"
     },
 ]

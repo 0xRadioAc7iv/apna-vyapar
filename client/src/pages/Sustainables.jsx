@@ -66,7 +66,7 @@ const Sustainables = () => {
             Filters
           </div>
           <div className="h-[1px] my-3 bg-white/30"></div>
-          <div className="flex flex-col items-center gap-2 justify-center font-medium">
+          <div className="flex flex-col pl-5 gap-2 justify-center font-medium">
             Industry Tags
             <input
               type="search"
