@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/explore/Checkbox";
 import { dummyData } from "../data/dummyData";
 import Green from "../ui/buttons/Green";
 import profile from "../assets/dummy-profile.svg";
 import FormButton from "../ui/buttons/FormButton";
-import UserIdContext from "../context/UserIdContext";
 import axios from "axios";
 
 const YourItemComponent = ({ id, imgURL, title, description, rating }) => {
@@ -58,8 +57,15 @@ const ProfileCard = () => {
 const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [ score, setScore ] = useState('_');
-    const { userId } = useContext(UserIdContext);
     const [apiData, setApiData] = useState([]);
+
+    const sortAscending = () => {
+      setApiData(apiData.sort((a, b) => a.sustainabilityRating - b.sustainabilityRating));
+    }
+
+    const sortDescending = () => {
+      setApiData(apiData.sort((a, b) => b.sustainabilityRating - a.sustainabilityRating));
+    }
 
     useEffect(() => {
       axios.get("http://localhost:3000/api/company/getSome")
@@ -80,6 +86,16 @@ const Explore = () => {
 
   const handleClick = (option) => {
     setSelectedOption(option);
+
+    if (option == "Low to High") {
+      sortAscending();
+    }
+
+    if (option == "High to Low") {
+      sortDescending();
+    }
+
+    console.log(apiData);
   };
 
   const getBorderStyle = (option) => {
@@ -141,7 +157,7 @@ const Explore = () => {
             <YourItemComponent
               key={item.id}
               id={item.id}
-              imgURL={item.imgURL}
+              imgURL={item.logo}
               title={item.companyName}
               description={item.description}
               rating={item.sustainabilityRating}
