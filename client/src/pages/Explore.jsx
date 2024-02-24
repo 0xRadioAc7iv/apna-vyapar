@@ -58,6 +58,7 @@ const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
     const [ score, setScore ] = useState('_');
     const [apiData, setApiData] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const sortAscending = () => {
       setApiData(apiData.sort((a, b) => a.sustainabilityRating - b.sustainabilityRating));
@@ -78,11 +79,20 @@ const Explore = () => {
         });
     }, []);
 
-    const getScore = () => {     
-      const susScore = parseInt(Math.random() * 30 + 70);
-      setScore(susScore);
-      console.log(susScore);
-    }
+
+    const getScore = () => {
+      setLoading(true);
+  
+      // Simulate a 5-second delay
+      setTimeout(() => {
+        const susScore = parseInt(Math.random() * 30 + 70);
+        setScore(susScore);
+        console.log(susScore);
+  
+        // Reset loading state after calculation
+        setLoading(false);
+      }, 5000);
+    };
 
   const handleClick = (option) => {
     setSelectedOption(option);
@@ -167,13 +177,44 @@ const Explore = () => {
         <div className="w-[250px] bg-[#0F0F0F] rounded-xl flex flex-col items-center">
           <ProfileCard />
           <div className="flex flex-col justify-center items-center mt-10 gap-6 border border-white/30 rounded-xl w-56 p-4">
-            <div>{score} / 100</div>
-            <button
-              onClick={() => getScore()}
-              className="flex text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md whitespace-nowrap"
-            >
-              Calculate Score
-            </button>
+            {/* <div>{score} / 100</div> */}
+            <div>
+      <button
+        onClick={() => getScore()}
+        className="flex text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md whitespace-nowrap"
+        disabled={loading}
+      >
+        {loading ? 'Calculating...' : 'Calculate Score'}
+      </button>
+
+      {loading && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50px', // Adjust height as needed
+          }}
+        >
+          <div
+            style={{
+              border: '4px solid #36D7B7', // Adjust color as needed
+              borderTop: '4px solid transparent',
+              borderRadius: '50%',
+              width: '20px', // Adjust size as needed
+              height: '20px', // Adjust size as needed
+              animation: 'spin 1s linear infinite',
+            }}
+          ></div>
+        </div>
+      )}
+
+      {score !== null && (
+        <p className='mt-3 ml-1 text-lg'>
+          Calculated Score: <strong>{score}</strong>
+        </p>
+      )}
+    </div>
           </div>
         </div>
       </div>
