@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserIdContext from '../context/UserIdContext';
 import { useContext } from 'react';
+import illustration from '../assets/illustration.svg';
 
 export default function SignIn() {
   const { setUserId } = useContext(UserIdContext);
@@ -53,7 +54,7 @@ export default function SignIn() {
   };
   return (
     <div className='w-full flex'>
-      <div className='p-3 w-1/2 h-screen flex flex-col justify-center items-center border-r border-[#1f1f21]'>
+      <div className='p-3 w-full h-screen flex flex-col justify-center items-center border-r border-[#1f1f21]'>
         <div className="my-4 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-6xl">
           Log In
         </div>      

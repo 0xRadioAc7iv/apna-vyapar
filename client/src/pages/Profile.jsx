@@ -178,8 +178,8 @@ export default function Profile() {
   }
 
   return (
-    <div className='w-full'>
-    <div className='p-3 w-1/2 border-r-white/30 border-r-2'>
+    <div className='w-full mt-10'>
+    <div className='p-3 border-r-white/30 border-r-2'>
       <div className="my-4 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-6xl">
         Profile
       </div>       
@@ -261,18 +261,18 @@ export default function Profile() {
           Register a Business
         </Link>
           </div>
-      </form>
-      <div className='flex flex-col mt-5 gap-2 items-end'>
+          <div className='flex justify-between mt-5 gap-2 items-center'>
         <span
           onClick={handleDeleteUser}
           className='text-red-700 w-32 bg-red-700 bg-opacity-20 p-2 rounded-lg cursor-pointer'
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className='text-red-700 w-32 bg-red-700 bg-opacity-20 p-2 rounded-lg cursor-pointer'>
+        <span onClick={handleSignOut} className='text-red-700 flex justify-center w-32 bg-red-700 bg-opacity-20 p-2 rounded-lg cursor-pointer'>
           Sign out
         </span>
       </div>
+      </form>
 
  <div>
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
