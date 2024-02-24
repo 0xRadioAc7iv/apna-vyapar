@@ -1,14 +1,20 @@
 import Company from '../models/company.model.js';
-import { errorHandler } from '../utils/error.js';
 import { spawn } from "child_process";
+import { v2 as cloudinary } from 'cloudinary';
 
 const pythonScript = 'model/ml_randomforest.py';
+
+cloudinary.config({
+  cloud_name: 'djjiuz6gn',
+  api_key: '695518777877473',
+  api_secret: '-Udscg62Nwtogj0FgzRHN6pGfmY'
+});
 
 export const createCompany = async (req, res, next) => {
   try {
     const name = req.body.name;
-    // const logo = req.body.logo;
-    const industry = req.body.domain;
+    let logo = '';
+    const industry = req.body.domain.toString();
     const description = req.body.description;
     const address = req.body.address;
     const phone = req.body.phone;
@@ -16,15 +22,23 @@ export const createCompany = async (req, res, next) => {
     const websiteUrl = req.body.url;
     const date = req.body.date;
     const founders = req.body.founders;
-    const environmentalScore = req.body.envscore;
-    const socialScore = req.body.socialscore;
-    const governanceScore = req.body.govscore;
+    let environmentalScore = parseInt(req.body.envscore);
+    let socialScore = parseInt(req.body.socialscore);
+    let governanceScore = parseInt(req.body.govscore);
     const size = req.body.size;
-    let sustainabilityRating = '';
+    let sustainabilityRating = 0;
 
-    function runPythonScript(scriptPath) {
+    await cloudinary.uploader.upload("C:\\Manav\\Wallpapers\\Omen_Wallpaper.png", (error, result) => {
+      if (error) {
+        console.error('Error uploading image to Cloudinary:', error);
+      } else {
+        logo = result.url;
+      }
+    });
+
+    function runPythonScript(scriptPath, args) {
       return new Promise((resolve, reject) => {
-        const pyProg = spawn('python', [scriptPath]);
+        const pyProg = spawn('python', [scriptPath, ...args]);
         let data = '';
 
         pyProg.stdout.on('data', (stdout) => {
@@ -37,7 +51,6 @@ export const createCompany = async (req, res, next) => {
 
         pyProg.on('close', (code) => {
           console.log(`child process exited with code ${code}`);
-          console.log(data);
 
           if (code === 0) {
             resolve(data);
@@ -49,7 +62,8 @@ export const createCompany = async (req, res, next) => {
     }
 
     try {
-      sustainabilityRating = await runPythonScript(pythonScript);
+      const scriptArgs = [environmentalScore, socialScore, governanceScore, industry, size];
+      sustainabilityRating = await runPythonScript(pythonScript, scriptArgs);
     } catch (error) {
       next(error);
     }
@@ -57,7 +71,7 @@ export const createCompany = async (req, res, next) => {
     const company = new Company(
       {
         companyName: name,
-        logo: "url",
+        logo: logo,
         industry: industry,
         description: description,
         companyAddress: address,

@@ -57,7 +57,6 @@ const Explore = () => {
     const { userId } = useContext(UserIdContext);
     const [apiData, setApiData] = useState([]);
 
-
     useEffect(() => {
       axios.get("http://localhost:3000/api/company/getSome")
         .then(response => {
@@ -70,9 +69,11 @@ const Explore = () => {
     }, []);
 
     const getScore = () => {     
-      axios.get("http://localhost:3000/api/company/getall")
+      console.log(userId);
+      axios.get(`http://localhost:3000/api/company/getrating/${userId}`)
       .then(response => {
         console.log('Data successfully get:', response.data);
+        setScore(response.data);
       })
       .catch(error => {
         console.error('Error getting data:', error);
