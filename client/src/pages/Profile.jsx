@@ -18,6 +18,9 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -154,9 +157,32 @@ export default function Profile() {
       console.log(error.message);
     }
   };
+
+  const showToast = (message, type) => {
+    toast(message, {
+      type: type,
+      autoClose: 3000, 
+    });
+  };
+
+  if (error) {
+    showToast(error, 'error');
+  }
+
+  if (updateSuccess) {
+    showToast('User is updated successfully!', 'success');
+  }
+
+  if (showListingsError) {
+    showToast('Error showing listings', 'error');
+  }
+
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+    <div className='w-full'>
+    <div className='p-3 w-1/2 border-r-white/30 border-r-2'>
+      <div className="my-4 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-6xl">
+        Profile
+      </div>       
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -184,64 +210,79 @@ export default function Profile() {
             ''
           )}
         </p>
-        <input
-          type='text'
-          placeholder='username'
-          defaultValue={currentUser.username}
-          id='username'
-          className='border p-3 rounded-lg'
-          onChange={handleChange}
-        />
+        <div className='flex flex-col items-center'>
+        <div className='flex flex-col gap-1'>
+            <label htmlFor="email" className="text-[#e2e2e2]">
+              Username
+            </label>
+            <input
+              type='text'
+              placeholder='username'
+              defaultValue={currentUser.username}
+              id='username'
+              className='p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]'
+              onChange={handleChange}
+            />
+        </div>
+        <div className='flex flex-col gap-1'>
+            <label htmlFor="email" className="text-[#e2e2e2]">
+              Email Address
+            </label>
         <input
           type='email'
           placeholder='email'
           id='email'
           defaultValue={currentUser.email}
-          className='border p-3 rounded-lg'
+          className='p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]'
           onChange={handleChange}
         />
+        </div>
+        <div className='flex flex-col gap-1'>
+            <label htmlFor="email" className="text-[#e2e2e2]">
+              Password
+            </label>
         <input
           type='password'
           placeholder='password'
           onChange={handleChange}
           id='password'
-          className='border p-3 rounded-lg'
-        />
-        <button
-          disabled={loading}
-          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+          className='p-2 mb-4 w-72 rounded-md focus:outline-none focus:ring focus:border-blue-300 border border-[#1f1f21] bg-[#09090b]'
+          />
+          </div>
+          <button
+            disabled={loading}
+            className='flex w-48 text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md'>
+            {loading ? 'Loading...' : 'Update'}
+          </button>
+          <Link
+          className='flex w-48 mt-4 text-sm items-center justify-center pb-2.5 inset-x-0 border border-transparent dark:border-white/[0.2] rounded-full bg-gradient-to-r from-green-500 to-green-700 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-3 py-2 hover:text-white hover:shadow-md'
+          to={'/register'}
         >
-          {loading ? 'Loading...' : 'Update'}
-        </button>
-        <Link
-          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
-          to={'/create-listing'}
-        >
-          Create Listing
+          Register a Business
         </Link>
+          </div>
       </form>
-      <div className='flex justify-between mt-5'>
+      <div className='flex flex-col mt-5 gap-2 items-end'>
         <span
           onClick={handleDeleteUser}
-          className='text-red-700 cursor-pointer'
+          className='text-red-700 w-32 bg-red-700 bg-opacity-20 p-2 rounded-lg cursor-pointer'
         >
           Delete account
         </span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+        <span onClick={handleSignOut} className='text-red-700 w-32 bg-red-700 bg-opacity-20 p-2 rounded-lg cursor-pointer'>
           Sign out
         </span>
       </div>
 
+ <div>
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className='text-green-700 w-full'>
-        Show Listings
-      </button>
       <p className='text-red-700 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
       </p>
+    </div>
 
       {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
@@ -282,6 +323,8 @@ export default function Profile() {
           ))}
         </div>
       )}
+    </div>
+    <div className='w-1/2'></div>
     </div>
   );
 }
