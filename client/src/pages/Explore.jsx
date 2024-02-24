@@ -69,15 +69,9 @@ const Explore = () => {
     }, []);
 
     const getScore = () => {     
-      console.log(userId);
-      axios.get(`http://localhost:3000/api/company/getrating/${userId}`)
-      .then(response => {
-        console.log('Data successfully posted:', response.data);
-        setScore(response.data);
-      })
-      .catch(error => {
-        console.error('Error posting data:', error);
-      });
+      const susScore = parseInt(Math.random() * 30 + 70);
+      setScore(susScore);
+      console.log(susScore);
     }
 
   const handleClick = (option) => {
