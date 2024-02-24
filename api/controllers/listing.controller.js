@@ -28,7 +28,7 @@ export const createCompany = async (req, res, next) => {
     const size = req.body.size;
     let sustainabilityRating = 0;
 
-    await cloudinary.uploader.upload("C:\\Manav\\Wallpapers\\Omen_Wallpaper.png", (error, result) => {
+    await cloudinary.uploader.upload("C:\\Users\\91701\\OneDrive\\Desktop\\apna-vyapar\\client\\src\\assets\\logo.jpeg", (error, result) => {
       if (error) {
         console.error('Error uploading image to Cloudinary:', error);
       } else {

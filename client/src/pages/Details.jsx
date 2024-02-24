@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import companyLogo from '../assets/company-logo.svg';
+import logo from '../assets/logo.jpeg';
 import Tip from '../ui/buttons/Tip';
 import { CiBookmark } from 'react-icons/ci';
 import about from '../assets/static-about-icon.svg';
@@ -28,12 +28,12 @@ const Details = () => {
     <div className="p-20 px-10">
       <div className="flex gap-4">
         <div>
-          <img src={companyLogo} alt="Company Logo" className="w-20 h-20 rounded-xl" />
+          <img src={logo} alt="Company Logo" className="w-20 h-20 rounded-xl" />
         </div>
         <div className="flex flex-col gap-2">
-          <div className="text-white text-3xl font-bold">Revoke</div>
+          <div className="text-white text-3xl font-bold">Veg Inc.</div>
           <div className="text-white text-md font-normal">
-            We help in improving the student’s skills and the way they present themselves.
+            Grows Healthy Food
           </div>
         </div>
       </div>
@@ -70,9 +70,9 @@ const Details = () => {
             <div>
               <img src={about} alt="About" className="w-18 h-18" />
             </div>
-            <div className="text-white text-2xl font-semibold">About Revoke</div>
+            <div className="text-white text-2xl font-semibold">About Veg Inc.</div>
             <div className='mt-4 w-1/2'>
-              Revoke helps one to check if there are any tokjens accounts are delaged and to another that service and partnership with the other which of their tokens rae so bad that they have to change their ui inorder to let them be in the cool place so that they can migrate and have some dreams towards their goals.
+            Veg. Inc. is a pioneering force in the plant-based revolution, dedicated to providing sustainable and delicious alternatives to traditional food products. Our mission is to inspire a world where every plate is a conscious choice for both personal well-being and the health of our planet.
             </div>
             <div className="w-full h-[0px] border border-neutral-300 border-opacity-30 mt-8"></div>
             <div className='mt-4'>
@@ -91,7 +91,7 @@ const Details = () => {
             </div>
             <div className="w-full h-[0px] border border-neutral-300 border-opacity-30 mt-8"></div>
             <div className="text-white text-2xl font-semibold mt-4">Tags</div>
-            <div className='bg-[#252525] flex w-[120px] justify-center rounded-xl mt-2 py-1'>FinTech</div>
+            <div className='bg-[#252525] flex w-[200px] justify-center rounded-xl mt-2 py-1'>Food and Beverages</div>
           </div>
         )}
         {activeTab === 'team' && (
@@ -99,7 +99,7 @@ const Details = () => {
             <div>
               <img src={about} alt="About" className="w-18 h-18" />
             </div>
-            <div className="text-white text-2xl font-semibold">Revoke Team</div>
+            <div className="text-white text-2xl font-semibold">Veg Inc. Team</div>
             <div className='flex items-end gap-3 mt-4'>
               <div>
                 <img src="https://randomuser.me/api/portraits" className='rounded-full bg-white w-10 h-10 mt-2' />
