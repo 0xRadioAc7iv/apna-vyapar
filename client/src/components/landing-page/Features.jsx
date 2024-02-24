@@ -9,24 +9,30 @@ const Features = () => {
       </div>
       <div className='flex flex-col gap-4 mt-6'>
         <div className='flex items-center gap-4'>
-          <div className='w-[600px] h-[250px] p-4 bg-[#0F0F0F] rounded-xl flex items-end' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+          <div className='w-[600px] h-[250px] p-4 bg-[#0F0F0F] rounded-xl flex items-end bg-gradient-to-r from-green-500 to-green-700'>
             <div className='flex flex-col'>
-              <div className="text-white text-[32px] font-extrabold">Product Sustainability </div>
-              <div className="w-[551px] text-white text-md font-normal">Environmentally and socially responsible product design and production.</div>
+              <div className="text-white text-[32px] font-extrabold">Quadratic Funding</div>
+              <div className="w-[551px] text-white text-md font-normal">Quadratic Funding amplifies community support, to provide significant aid to local businesses</div>
             </div>
           </div>
-          <div className='w-[300px] h-[250px] bg-[#0F0F0F] rounded-xl p-4'>
-            <div className="text-white text-[32px] font-extrabold">Precise Statistics</div>
+          <div className='w-[300px] h-[250px] bg-[#0F0F0F] flex items-end rounded-xl p-4 bg-gradient-to-r from-green-500 to-green-700'>
+            <div className='flex flex-col'>
+              <div className="text-white text-[32px] font-extrabold">Precise Statistics</div>
+              <div className="text-white text-md font-normal">Well researched data to kickstart your local businesses</div>
+            </div>
           </div>
         </div>
         <div className='flex items-center gap-4'>
-          <div className='w-[300px] h-[250px] bg-[#0F0F0F] rounded-xl p-4'>
-            <div className="text-white text-[32px] font-extrabold">Marketing</div>
+          <div className='w-[300px] h-[250px] bg-[#0F0F0F] flex items-end rounded-xl p-4 bg-gradient-to-r from-green-500 to-green-700'>
+          <div className='flex flex-col'>
+              <div className="text-white text-[32px] font-extrabold">Marketing</div>
+              <div className="text-white text-md font-normal">A one stop solution for all your Marketing Issues</div>
+            </div>
           </div>
-          <div className='w-[600px] h-[250px] p-4 bg-[#0F0F0F] rounded-xl flex justify-end items-end' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+          <div className='w-[600px] h-[250px] p-4 bg-[#0F0F0F] rounded-xl flex items-end bg-gradient-to-r from-green-500 to-green-700'>
             <div className='flex flex-col items-start'>
-              <div className="text-white text-[32px] font-extrabold">Decentralised Finance</div>
-              <div className="w-[551px] text-white text-md font-normal">Empowering the power of Quadratic Funding for creating a more secured way of funding.</div>
+              <div className="text-white text-[32px] font-extrabold">Machine Learning</div>
+              <div className="w-[551px] text-white text-md font-normal">Uses ML Algorithms to Calculate Sustainability Scores to provide better understanding about the Businesses</div>
             </div>
           </div>
         </div>
