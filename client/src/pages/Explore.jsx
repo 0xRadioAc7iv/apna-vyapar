@@ -56,7 +56,7 @@ const ProfileCard = () => {
 
 const Explore = () => {
     const [selectedOption, setSelectedOption] = useState(null);
-    const [ score, setScore ] = useState('_');
+    const [ score, setScore ] = useState('');
     const [apiData, setApiData] = useState([]);
     const [loading, setLoading] = useState(false);
 
