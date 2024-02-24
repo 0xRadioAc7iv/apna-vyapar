@@ -23,7 +23,7 @@ const YourItemComponent = ({ id, imgURL, title, description, rating }) => {
         </div>
         <div>
           <div className="flex">
-            {rating}/100
+            {rating}/100 ⭐
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ const ProfileCard = () => {
           sarthakshah123@gmail.com
         </div>
       </div>
-      <Green text="Log Out" />
+      <Green text="Go to Profile" />
     </div>
   );
 };
@@ -72,10 +72,10 @@ const Explore = () => {
     const getScore = () => {     
       axios.get("http://localhost:3000/api/company/getall")
       .then(response => {
-        console.log('Data successfully posted:', response.data);
+        console.log('Data successfully get:', response.data);
       })
       .catch(error => {
-        console.error('Error posting data:', error);
+        console.error('Error getting data:', error);
       });
     }
 
@@ -101,7 +101,7 @@ const Explore = () => {
             Filters
           </div>
           <div className="h-[1px] my-3 bg-white/30"></div>
-          <div className="flex flex-col items-center gap-2 justify-center font-medium">
+          <div className="flex my-4 flex-col pl-4 gap-2 justify-center font-medium">
             Industry Tags
             <input
               type="search"
@@ -115,12 +115,12 @@ const Explore = () => {
             <Checkbox />
           </div>
           <div className="h-[1px] my-3 bg-white/30"></div>
-          <div className="flex flex-col items-center gap-2 justify-center font-medium">
+          <div className="flex flex-col pl-4 gap-2 justify-center font-medium">
             Customer Rating
           </div>
-          <div className="flex flex-col items-center gap-4 mt-4">
+          <div className="flex flex-col pl-4 gap-4 mt-4">
             <div
-              className={`py-1.5 px-4 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
+              className={`py-2.5 px-5 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
                 "Low to High"
               )}`}
               onClick={() => handleClick("Low to High")}
@@ -128,7 +128,7 @@ const Explore = () => {
               Low to High
             </div>
             <div
-              className={`py-1.5 px-4 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
+              className={`py-2.5 px-5 w-32 cursor-pointer text-white text-sm font-medium bg-neutral-800 rounded-md justify-center items-center inline-flex ${getBorderStyle(
                 "High to Low"
               )}`}
               onClick={() => handleClick("High to Low")}
