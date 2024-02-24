@@ -9,7 +9,7 @@ import RegisterForm from './pages/RegisterForm'
 import Explore from './pages/Explore';
 import PrivateRoute from './components/PrivateRoute';
 import UserIdContext from './context/UserIdContext';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Details from './pages/Details';
 import Marketing from './pages/Marketing';
 import Sustainables from './pages/Sustainables';

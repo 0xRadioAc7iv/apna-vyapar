@@ -44,6 +44,7 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data));
+      setUserId(data._id);
       navigate('/');
     } catch (error) {
       dispatch(signInFailure(error.message));
