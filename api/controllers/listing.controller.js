@@ -2,7 +2,7 @@ import Company from '../models/company.model.js';
 import { spawn } from "child_process";
 import { v2 as cloudinary } from 'cloudinary';
 
-const pythonScript = 'model/ml_randomforest.py';
+const pythonScript = './model/ml_randomforest.py';
 
 cloudinary.config({
   cloud_name: 'djjiuz6gn',
