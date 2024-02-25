@@ -18,7 +18,7 @@ const Details = () => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/company/getall/${userId}`)
+    axios.get(`https://apna-vyapar.onrender.com/api/company/getall/${userId}`)
     .then(response => {
       console.log(response);
     })

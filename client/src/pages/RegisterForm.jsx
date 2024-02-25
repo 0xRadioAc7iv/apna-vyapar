@@ -25,7 +25,7 @@ export default function RegisterForm() {
     // formData.append('data', formData);
     console.log("SENDING", formData);
 
-    await axios.post("http://localhost:3000/api/company/create", formData)
+    await axios.post("https://apna-vyapar.onrender.com/api/company/create", formData)
     .then(response => {
         console.log('Data successfully posted:', response.data);
       })

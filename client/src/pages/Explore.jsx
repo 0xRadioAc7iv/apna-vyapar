@@ -69,7 +69,7 @@ const Explore = () => {
     }
 
     useEffect(() => {
-      axios.get("http://localhost:3000/api/company/getSome")
+      axios.get("https://apna-vyapar.onrender.com/api/company/getSome")
         .then(response => {
           setApiData(response.data); 
           console.log('Data successfully fetched:', response.data);
